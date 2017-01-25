@@ -2,7 +2,7 @@ title: Sankarara.GitHub.io
 description: My Github Page
 google_analytics: 
 show_downloads: true
-theme: jekyll-theme-minimal
+theme: jekyll-theme-midnight
 
 gems:
   - jekyll-mentions
