@@ -4,5 +4,9 @@ google_analytics:
 show_downloads: false
 theme: jekyll-theme-midnight
 
+kramdown:
+   input: GFM
+   hard_wrap: false
+
 gems:
   - jekyll-mentions
