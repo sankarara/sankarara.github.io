@@ -519,7 +519,7 @@ postgres=# \quit
 <code>cd ttrss</code><br>
 <code>chmod -R 777 cache/images cache/js cache/export cache/upload feed-icons lock</code><br>
 <code>cd ..</code><br>
-<code>mv ttrss /var/www/html/ttrss</code><br>
+<code>sudo mv ttrss /var/www/html/ttrss</code><br>
 <code>sudo chown -R www-data:www-data /var/www/html/ttrss</code></li>
 <li>config Nginx
 <ul>
@@ -572,13 +572,24 @@ then
 <li>Updating Feeds
 <ul>
 <li><a href="https://tt-rss.org/gitlab/fox/tt-rss/wikis/UpdatingFeeds">https://tt-rss.org/gitlab/fox/tt-rss/wikis/UpdatingFeeds</a></li>
-<li><code>sudo systemctl enable /etc/systemd/system/ttrss.service</code>
+<li><code>sudo nano /etc/systemd/system/ttrss.service</code></li>
+</ul>
+<pre><code>[Unit]
+Description=ttrss_backend
+After=network.target mysql.service postgresql.service
+
+[Service]
+User=www-data
+ExecStart=/var/www/html/ttrss/update_daemon2.php
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
 <ul>
+<li><code>sudo systemctl enable /etc/systemd/system/ttrss.service</code></li>
 <li><a href="https://coreos.com/docs/launching-containers/launching/getting-started-with-systemd/">https://coreos.com/docs/launching-containers/launching/getting-started-with-systemd/</a></li>
 <li><a href="https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units">https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units</a></li>
-<li>Systemd For Ubuntu 16.04 it's <code>/lib/systemd/system/</code></li>
-</ul>
-</li>
+<li>Systemd For Ubuntu 16.04 it's <code>/lib/systemd/system/</code> ?</li>
 </ul>
 </li>
 </ul>
